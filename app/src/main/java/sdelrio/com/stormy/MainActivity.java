@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 
 import okhttp3.Call;
@@ -21,6 +24,8 @@ import static android.app.DownloadManager.Request.*;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
+
+    private CurrentWeather mCurrentWeather;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
                     try {
                         Log.v(TAG, response.body().string());
                         if (response.isSuccessful()) {
+                            mCurrentWeather = getCurrentDetails(response.body().string());
 
                         } else {
                             alertUserAboutError();
@@ -57,6 +63,9 @@ public class MainActivity extends AppCompatActivity {
                     } catch (IOException e) {
                         Log.e(TAG, "Exception caught: ", e);
                     }
+                      catch (JSONException e){
+                          Log.e(TAG, "Exception caught: ", e);
+                      }
                 }
             });
         }
@@ -79,5 +88,22 @@ public class MainActivity extends AppCompatActivity {
     private void alertUserAboutError() {
         AlertDialogFragment dialog = new AlertDialogFragment();
         dialog.show(getFragmentManager(), "error_dialog");
+    }
+
+    private CurrentWeather getCurrentDetails(String jsonData) throws JSONException{
+        JSONObject forecast = new JSONObject(jsonData);
+        JSONObject currently = forecast.getJSONObject("currently");
+
+        CurrentWeather currentWeather = new CurrentWeather();
+
+        currentWeather.setTimeZone(forecast.getString("timezone"));  //grab timezone from forecast
+        currentWeather.setIcon(currently.getString("icon"));         //grab all others from the inner object (currently)
+        currentWeather.setTime(currently.getLong("time"));
+        currentWeather.setTemperature(currently.getDouble("temperature"));
+        currentWeather.setHumidity(currently.getDouble("humidity"));
+        currentWeather.setPrecipChance(currently.getDouble("precipProbability"));
+        currentWeather.setSummary(currently.getString("summary"));
+
+        return currentWeather;
     }
 }
