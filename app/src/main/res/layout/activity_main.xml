@@ -5,13 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="sdelrio.com.stormy.MainActivity"
-    android:background="#FC970B"
-    android:layout_alignEnd="@+id/refreshImageView">
+    android:background="@drawable/bg_gradient"
+    android:layout_alignEnd="@+id/refreshImageView"
+    android:layout_alignRight="@id/refreshImageView">
 
     <TextView
         android:layout_width="wrap_content"
@@ -79,7 +79,7 @@
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/linearLayout"
         android:layout_below="@+id/temperatureLabel"
@@ -87,9 +87,9 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_width="163dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.64">
 
             <TextView
                 android:layout_width="match_parent"
@@ -98,7 +98,8 @@
                 android:id="@+id/humidityLabel"
                 android:textColor="#80FFFFFF"
                 android:textSize="24sp"
-                android:layout_gravity="center_horizontal"/>
+                android:layout_gravity="center_horizontal"
+                android:textAlignment="center"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -107,13 +108,14 @@
                 android:id="@+id/humidityValue"
                 android:textColor="#ffffff"
                 android:textSize="24sp"
-                android:layout_gravity="center_horizontal"/>
+                android:layout_gravity="center_horizontal"
+                android:textAlignment="center"/>
         </LinearLayout>
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_width="168dp"
             android:layout_weight="1">
 
             <TextView
@@ -123,7 +125,9 @@
                 android:id="@+id/precipLabel"
                 android:textColor="#80FFFFFF"
                 android:textSize="24sp"
-                android:layout_gravity="center_horizontal"/>
+                android:maxLines="1"
+                android:layout_gravity="center_horizontal"
+                android:textAlignment="center"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -132,7 +136,8 @@
                 android:id="@+id/precipValue"
                 android:textColor="#ffffff"
                 android:textSize="24sp"
-                android:layout_gravity="center_horizontal"/>
+                android:layout_gravity="center_horizontal"
+                android:textAlignment="center"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -153,5 +158,34 @@
         tools:visibility="visible"
         android:layout_alignBottom="@+id/refreshImageView"
         android:layout_centerHorizontal="true" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/summaryLabel"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="13dp">
+
+        <Button
+            android:text="HOURLY"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/hourlyButton"
+            android:layout_weight="1"
+            android:background="#40ffffff"
+            android:textColor="#ffffffff"/>
+
+        <Button
+            android:text="7 DAY"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/dailyButton"
+            android:layout_weight="1"
+            android:textColor="#ffffffff"
+            android:background="#40ffffff"
+            android:layout_marginLeft="2dp"/>
+    </LinearLayout>
 
 </RelativeLayout>

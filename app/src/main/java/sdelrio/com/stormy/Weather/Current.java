@@ -1,11 +1,13 @@
-package sdelrio.com.stormy;
+package sdelrio.com.stormy.Weather;
 
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
-public class CurrentWeather {
+import sdelrio.com.stormy.R;
+
+public class Current {
 
     private String mIcon;
     private long mTime;
@@ -15,7 +17,7 @@ public class CurrentWeather {
     private String mSummary;
     private String mTimeZone;
 
-    public long getTime() {
+    private long getTime() {
         return mTime;
     }
 
